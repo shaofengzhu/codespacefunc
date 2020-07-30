@@ -1,6 +1,10 @@
 from __future__ import annotations
 import itertools
 import pandas as pd
+import base64
+from urllib.parse import quote as urlquote
+from urllib.request import urlopen
+
 
 def myadd(x, y):
     """Basic addition test"""
@@ -61,3 +65,16 @@ PNG = 'iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwS
 def get_image():
     """Return an image"""
     return {"data": PNG, "mimeType": "image/png"}
+
+def countrydata(country: str) -> 'Matrix':
+    country = urlquote(country)
+    data = pd.read_csv(f"https://e2efunc.azurewebsites.net/api/covidata?country={country}")
+    return data
+
+def countryplot(country: str):
+    country = urlquote(country)
+    with urlopen(f"https://e2efunc.azurewebsites.net/api/covidata?country={country}&output=plot") as u:
+        return {
+            "data": base64.b64encode(u.read()).decode("ascii"),
+            "mimeType": "image/png"
+        }
