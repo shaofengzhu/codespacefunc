@@ -69,8 +69,8 @@ def get_image():
 def countrydata(country: str) -> 'Matrix':
     country = urlquote(country)
     data = pd.read_csv(f"https://e2efunc.azurewebsites.net/api/covidata?country={country}")
-    data.fillna("")
-    return data
+    data2 = data.fillna("")
+    return data2
 
 def countryplot(country: str):
     country = urlquote(country)
