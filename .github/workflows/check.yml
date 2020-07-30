@@ -1,0 +1,28 @@
+name: Check
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout' 
+      uses: actions/checkout@master
+      with:
+        ref: master
+   
+    - name: 'Setup Python'
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.8'
+
+    - name: 'Install dependencies'
+      run: |
+        python3 -m pip install -r requirements.txt
+
+    - name: 'Check functions'
+      run: |
+        python3 .scripts/check.py
