@@ -66,11 +66,11 @@ def get_image():
     """Return an image"""
     return {"data": PNG, "mimeType": "image/png"}
 
-def countrydata(country: str) -> 'Matrix':
+def countrydata(country: str) -> AnyMatrix:
     country = urlquote(country)
     data = pd.read_csv(f"https://e2efunc.azurewebsites.net/api/covidata?country={country}")
-    data2 = data.fillna("")
-    return data2.tail(20)
+    data.fillna(0.0, inplace=True)
+    return data.tail(20)
 
 def countryplot(country: str):
     country = urlquote(country)
