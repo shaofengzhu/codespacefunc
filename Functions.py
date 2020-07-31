@@ -13,7 +13,7 @@ def myadd(x, y):
 
 def badadd(x : float, y : float) -> float:
     """Another addition test"""
-    return x + y + 42
+    return x + y + 20
 
 
 def get_table() -> NumberMatrix:
