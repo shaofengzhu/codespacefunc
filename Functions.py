@@ -67,14 +67,14 @@ def get_image():
     return {"data": PNG, "mimeType": "image/png"}
 
 def countrydata(country: str) -> AnyMatrix:
-    country = urlquote(country)
+    #country = urlquote(country)
     data = pd.read_csv(f"https://e2efunc.azurewebsites.net/api/covidata?country={country}")
     data.fillna(0.0, inplace=True)
-    return data
-    #return data.tail(20)
+    #return data
+    return data.tail(20)
 
 def countryplot(country: str):
-    country = urlquote(country)
+    #country = urlquote(country)
     with urlopen(f"https://e2efunc.azurewebsites.net/api/covidata?country={country}&output=plot") as u:
         return {
             "data": base64.b64encode(u.read()).decode("ascii"),
