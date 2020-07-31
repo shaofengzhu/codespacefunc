@@ -56,7 +56,6 @@ def _getPageHtml(devMode = False) -> str:
     <body>
         <div id="DivApp">
         </div>
-        
         <div id="DivLog">
         </div>
     </body>
